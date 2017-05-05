@@ -1,0 +1,8 @@
+ FB.api('/' + authResponse.authResponse.userID + '/picture', function (xresponse) {
+    console(xresponse.data.url);
+ });
+
+ FB.api('/me', function(response) {
+    console.log(response);
+    facebookSignOut();
+ });
