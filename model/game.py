@@ -1,5 +1,5 @@
 from database.database_setup import Base
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Date
 
 
 class Game(Base):
@@ -11,6 +11,17 @@ class Game(Base):
 
     description = Column(String, nullable=False)
 
+    release_date = Column(Date, nullable=True)
+
     created_at = Column(DateTime, nullable=False)
 
     updated_at = Column(DateTime, nullable=True)
+
+    @property
+    def serialize(self):
+        return {
+            'id' : self.id,
+            'name' : self.name,
+            'description' : self.description,
+            'release_date' : self.release_date
+        }

@@ -7,6 +7,10 @@ class DAO:
     """
 
     @staticmethod
+    def session():
+        return PostgreConnection.get_session()
+
+    @staticmethod
     def find(cls, **args):
         session = PostgreConnection.get_session()
         return session.query(cls).filter_by(**args)

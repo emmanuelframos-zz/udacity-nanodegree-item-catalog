@@ -1,32 +1,37 @@
-<div class="row">
-    <div class="col-md-12">
-        <h2>Game Character</h2>
-	    <form action="/character/create" method="POST">
-	    	<div class="form-group">
-	    		<label>Game</label>
-				<select name="game-select">
-				  {% for game in games %}
-				  	  <option value="{{game.id}}">{{game.name}}</option>  
-				  {% endfor %}     
-				</select>
-			</div>
-			<div class="form-group">
-		        <label>Name</label>
-		        <input type="text" name="characterName" value="{{character.name}}" class="form-control">
-		    </div>	
-			<div class="form-group">
-		        <label>Description</label>
-		        <textarea rows="15" name="characterDescription" class="form-control">{{character.description}}</textarea>
-		    </div>
-		    <div class="character-error">
-                <span class="character-error-text">{{error_message}}</span>
-            </div>
-            {% if character.name|length > 0 %}
-              <input type="hidden" name="update" value="true">
-              <input type="hidden" name="id" value="{{character.id}}">
-            {% endif %}
-            <button type="submit" name="create" class="btn btn-default">Save</button>
-            <button type="submit" class="btn btn-default">Cancel</button>
-	    </form>
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="row">
+	    <div class="col-md-12">
+	        <h2>Game Character</h2>
+		    <form action="/character/create" method="POST">
+		    	<div class="form-group">
+		    		<label>Game</label>
+					<select name="game-select">
+					  {% for game in games %}
+					  	  <option value="{{game.id}}">{{game.name}}</option>  
+					  {% endfor %}     
+					</select>
+				</div>
+				<div class="form-group">
+			        <label>Name</label>
+			        <input type="text" name="characterName" class="form-control">
+			    </div>	
+				<div class="form-group">
+			        <label>Description</label>
+			        <textarea rows="15" name="characterDescription" class="form-control"></textarea>
+			    </div>
+			    <div class="character-error">
+	                <span class="character-error-text">{{error_message}}</span>
+	            </div>
+	          
+	            <input type="hidden" name="update" value="true">
+	            <input type="hidden" name="id">
+	            <button type="submit" name="create" class="btn btn-default">Save</button>
+	            <button type="submit" class="btn btn-default">Cancel</button>
+		    </form>
+		</div>
 	</div>
-</div>
+
+{% endblock %}
