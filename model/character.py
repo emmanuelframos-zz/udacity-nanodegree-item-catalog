@@ -4,9 +4,10 @@ from sqlalchemy import Column, Integer, ForeignKey, String, DateTime, Date
 from sqlalchemy.orm import  relationship
 
 from model.game import Game
+import datetime
 
 
-class GameCharacter(Base):
+class Character(Base):
     __tablename__ = "game_character"
 
     id = Column(Integer, primary_key=True)
@@ -19,7 +20,7 @@ class GameCharacter(Base):
 
     release_date = Column(Date, nullable=True)
 
-    created_at = Column(DateTime, nullable=False)
+    created_at = Column(DateTime, nullable=False, default=datetime.datetime.now())
 
     updated_at = Column(DateTime, nullable=True)
 
@@ -29,7 +30,8 @@ class GameCharacter(Base):
     def serialize(self):
         return {
             'id': self.id,
+            'game': self.id_game,
             'name': self.name,
             'description': self.description,
-            'release_date': self.release_date
+            'release_date': self.release_date.strftime("%m-%d-%Y")
         }

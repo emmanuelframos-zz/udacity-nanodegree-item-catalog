@@ -1,0 +1,34 @@
+<div ng-include src="'static/app/pages/navbar-on.html'"></div> 
+
+<div class="row frm-container" ng-controller="CharacterEditController as characterEditCtrl">
+	<div class="col-md-12">
+		<h2 class="edit-title">New Game Character</h2>
+		<div class="form-group chrct-filter-game">
+			<label>Game</label>
+			<select class="custom-select form-control" ng-model="characterEditCtrl.character.id_game">
+				<option ng-repeat="game in characterEditCtrl.games | orderBy:'name'" value="{{game.id}}">{{game.name}}</option>
+			</select>
+		</div>
+		<div class="form-group chrct-fields">
+			<div class="chrct-name">
+				<label>Name</label>
+				<input type="text" name="characterName" class="form-control" ng-model="characterEditCtrl.character.name">
+			</div>
+			<div>
+				<label>Release Date</label>
+				<input type="date" name="releaseDate" ng-model="characterEditCtrl.character.release_date" class="form-control date-field">
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Image</label>
+			<input type="file" name="file" ng-model="characterEditCtrl.character.image"/>
+		</div>
+		<div class="form-group">
+			<label>Description</label>
+			<textarea rows="15" name="characterDescription" class="form-control"  ng-model="characterEditCtrl.character.description"></textarea>
+		</div>
+		<button class="btn btn-default" ng-click="characterEditCtrl.cancel()">Cancel</button>
+		<button class="btn btn-default" ng-if="characterEditCtrl.isEdit" ng-click="characterEditCtrl.deleteCharacter()">Remove</button>
+		<button class="btn btn-default" ng-click="characterEditCtrl.saveCharacter()">Save</button>
+	</div>
+</div>

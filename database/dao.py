@@ -13,7 +13,9 @@ class DAO:
     @staticmethod
     def find(cls, **args):
         session = PostgreConnection.get_session()
-        return session.query(cls).filter_by(**args)
+        one_result = session.query(cls).filter_by(**args).one()
+        session.expunge(one_result)
+        return one_result
 
     @staticmethod
     def find_all(cls):
@@ -29,7 +31,7 @@ class DAO:
     @staticmethod
     def update(object):
         session = PostgreConnection.get_session()
-        session.add(object)
+        session.merge(object)
         session.commit()
 
     @staticmethod

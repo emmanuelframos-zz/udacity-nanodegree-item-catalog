@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="e-sports">
   <head>  
     <title>e-Sports Games Catalog</title>
       <meta charset="utf-8">
@@ -9,53 +10,34 @@
       <link href="/../static/css/bootstrap.css" rel="stylesheet">
       <!-- Normalize -->
       <link href="/../static/css/normalize.css" rel="stylesheet">
-      <!-- Custom styles for this template -->
+      <!-- Custom styles -->
       <link href="/../static/css/style.css" rel="stylesheet">
   </head>
-  <body> 
-     <nav class="navbar navbar-default" style="display:flex;flex-direction:row">
-        <div class="container-fluid">   
-          <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Game<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/game/new">New</a></li>
-                  <li><a href="/game/list">List</a></li>                
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Game Character<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/character/new">New</a></li>
-                  <li><a href="/game/0/character/list">List</a></li>
-                </ul>
-              </li>
-            </ul>          
-          </div>
-          <div class="lgn-button-container">
-            <div class="fb-login-button" data-login_text="Sign in with Facebook" scope="public_profile,email" onlogin="checkLoginState();"></div>
-            <input id="signin-button" type="image" src="../static/img/google-signin.png" onclick="googleSignIn()" alt="Sign In"/>
-          </div>
+  <body ng-controller="AppController as appCtrl" ng-cloak>      
+
+      <div ng-view></div>
+
+      <footer>
+        <div class="footer-container">
+            <p class="footer-text">e-Sports Games Catalog &copy; 2017, All Rights Reserved</p>
         </div>
-      </nav>
+      </footer>
 
-      <div id="content">
-          {% block content %}
-          {% endblock %}
-      </div>  
-
+      <script src="/../static/js/angular.js"></script>
+      <script src="/../static/js/angular-route.js"></script>
+      <script src="/../static/app/app.js"></script>
+      <script src="/../static/app/controllers/game-ctrl.js"></script>
+      <script src="/../static/app/controllers/gameEdit-ctrl.js"></script>
+      <script src="/../static/app/controllers/character-ctrl.js"></script>
+      <script src="/../static/app/controllers/characterEdit-ctrl.js"></script>
+      <script src="/../static/app/services/game-service.js"></script>
+      <script src="/../static/app/services/character-service.js"></script>
+      <script src="/../static/app/services/util-service.js"></script>
       <script src="/../static/js/googleOAuth2Start.js"></script>
       <script src="/../static/js/facebookOAuth2Start.js"></script>
-      <script src="/../static/js/jquery-3.2.1.min.js"></script>
+      <script src="/../static/js/jquery-3.2.1.js"></script>
       <script src="/../static/js/bootstrap.js"></script>
       <script src="/../static/js/loginHandler.js"></script>
       <script src="https://apis.google.com/js/platform.js?onload=start" async defer></script>
-      <script>
-          $( document ).ready(function() {
-            console.log( "ready!" );
-          });
-      </script>  
   </body>
 </html>

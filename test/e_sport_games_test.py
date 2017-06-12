@@ -12,7 +12,7 @@ class ESportGamesTest(unittest.TestCase):
 
         DAO.create(entry)
 
-        game = DAO.find(Game, name="League of Legends")[0]
+        game = DAO.find(Game, name="League of Legends")
 
         self.assertIsNotNone(game)
 
@@ -24,7 +24,7 @@ class ESportGamesTest(unittest.TestCase):
 
     def test_03_update(self):
 
-        game = DAO.find(Game, name="League of Legends")[0]
+        game = DAO.find(Game, name="League of Legends")
 
         date_time = datetime.datetime.now()
 
@@ -32,7 +32,7 @@ class ESportGamesTest(unittest.TestCase):
 
         DAO.update(game)
 
-        game_updated = DAO.find(Game, name="League of Legends")[0]
+        game_updated = DAO.find(Game, name="League of Legends")
 
         self.assertEqual(game.updated_at, game_updated.updated_at)
 
