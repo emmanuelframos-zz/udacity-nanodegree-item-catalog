@@ -23,19 +23,19 @@ The application was built in [AngularJS](https://angularjs.org/) + [Bootstrap](h
 - Access the application in [http://localhost:5000](http://localhost:5000)
 
 ## e-Sports Game Catalog Funcionalities
-- Login
+**Login** <br/>
 ![](http://imagizer.imageshack.us/v2/689x433q90/924/ZlAlqS.png?raw=true)
 
-- Game Listing
+**Game Listing** <br/>
 ![](http://imagizer.imageshack.us/v2/1055x327q90/923/Pq88uT.png?raw=true)
 
-- Game Creation & Updating
+**Game Creation & Updating** <br/>
 ![](http://imagizer.imageshack.us/v2/836x510q90/924/ziu5Md.png?raw=true)
 
-- Game Character Listing
+**Game Character Creation** <br/>
 ![](http://imagizer.imageshack.us/v2/1055x410q90/923/hL2eOf.png?raw=true)
 
-- Game Character Creation & Updating
+**Game Character Creation & Updating** <br/>
 ![](http://imagizer.imageshack.us/v2/880x510q90/924/AFYnld.png?raw=true)
 
 ## Supported Python Versions
