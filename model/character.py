@@ -1,13 +1,14 @@
 from database.database_setup import Base
-
 from sqlalchemy import Column, Integer, ForeignKey, String, DateTime, Date
-from sqlalchemy.orm import  relationship
-
+from sqlalchemy.orm import relationship
 from model.game import Game
 import datetime
 
 
 class Character(Base):
+    """
+    Represents character entity on database
+    """
     __tablename__ = "game_character"
 
     id = Column(Integer, primary_key=True)
@@ -20,7 +21,8 @@ class Character(Base):
 
     release_date = Column(Date, nullable=True)
 
-    created_at = Column(DateTime, nullable=False, default=datetime.datetime.now())
+    created_at = Column(DateTime, nullable=False,
+                        default=datetime.datetime.now())
 
     updated_at = Column(DateTime, nullable=True)
 

@@ -11,8 +11,8 @@ function checkLoginState() {
     });
 }
 
+/* Facebook SignOut */
 var facebookSignOut = function(){
-    console.log("Facebook - Signing out.");
     FB.logout(function(response) {
         window.localStorage.clear();
 
@@ -22,11 +22,12 @@ var facebookSignOut = function(){
     });
 }
 
-/* Google OAuth 2 SignIn */
+/* Google OAuth 2 Start */
 var start = function(){
     googleOAuth2Start();
 };
 
+/* Google OAuth 2 SignIn */
 googleSignIn = function(){
     var promise = gapi.auth2.getAuthInstance().signIn({ scope: 'email' });
 
@@ -39,10 +40,10 @@ googleSignIn = function(){
     });
 }
 
+/* Google SignOut */
 var googleSignOut = function(){
-    console.log("Google - Signing out.");
-
     gapi.auth2.getAuthInstance().signOut();
+
     window.localStorage.clear();
 
     console.log("Google - Signed out.");

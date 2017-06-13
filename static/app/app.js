@@ -1,14 +1,18 @@
 var app = angular.module('e-sports', ['ngRoute', 'angular-loading-bar']);
 
-app.controller('AppController', ['$location', function ($location) {
+app.controller('AppController', function ($location) {
     var vm = this;  
 
     vm.user = window.localStorage.user; 
 
     function init(){              
-        if (window.localStorage.auth_token){          
-            $location.path(window.href);
-        }else{          
+        if (window.localStorage.auth_token){
+            if (window.href){
+                $location.path(window.href);
+            }else{
+                $location.path("/gameList");
+            }
+        }else{
             $location.path('/signIn');
         }
     }    
@@ -25,7 +29,7 @@ app.controller('AppController', ['$location', function ($location) {
 
     init();
 
-}]);
+});
 
 app.config(function($routeProvider, $httpProvider){
     $httpProvider.interceptors.push('Interceptor');     
@@ -54,9 +58,7 @@ app.config(function($routeProvider, $httpProvider){
         });
 });
 
-
-
-app.factory('Interceptor', ['$q', function Interceptor($q) {
+app.factory('Interceptor', function Interceptor($q) {
   return {
     request: function(config) {
       config.headers["auth_token"] = window.localStorage.auth_token;
@@ -78,4 +80,4 @@ app.factory('Interceptor', ['$q', function Interceptor($q) {
       return $q.reject(res);      
     }
   }
-}]);
+});

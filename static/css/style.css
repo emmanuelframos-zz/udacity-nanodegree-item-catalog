@@ -1,19 +1,15 @@
 body {
-  padding-bottom:20px;
+  padding-bottom:2em;
   background:#f5f5f5;
-  color:#666;
-  height: 100%;
 }
 
 .container-main{
 	background:#f4f4f4;
 	overflow:auto;
-	border-radius:10px;
 }
 
 .navbar{
 	margin-bottom:20px;
-	border-radius:0;
 	border:0;
 	background:#eee;
 }
@@ -29,10 +25,6 @@ body {
 
 .date-field{
     width: 13em;
-}
-
-.chrct-filter{
-    display: flex;
 }
 
 .chrct-filter-clear{
@@ -88,20 +80,6 @@ body {
     font-size: 1.2em
 }
 
-footer {
-    color:#2d3c49;
-    font-weight:bold;
-    text-align:center;
-    padding-top: 1.5em;
-    margin-top: -50px;
-    box-shadow: inset 0 3px 0 0 #2d3c49;
-    height: 4em;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
- }
-
  .nav-container{
     display: flex;
     margin: 0 !important;
@@ -128,7 +106,7 @@ footer {
  }
 
  .login-container{
-    width: 17%;
+    width: 22%;
     margin: 10em auto;
     text-align: center;
     border-radius: 0.1em;
@@ -141,38 +119,32 @@ footer {
  }
 
  .google-button{
-    width: 11em;
-    height: 2.4em;
+    width: 15em;
+    height: 3.4em;
     margin-top: 0.4em;
  }
 
- /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
-    visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 250px; /* Set a default minimum width */
-    margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #333; /* Black background color */
-    color: #fff; /* White text color */
-    text-align: center; /* Centered text */
-    border-radius: 2px; /* Rounded borders */
-    padding: 16px; /* Padding */
-    position: fixed; /* Sit on top of the screen */
-    z-index: 1; /* Add a z-index if needed */
-    left: 50%; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
 }
 
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.show {
-    visibility: visible; /* Show the snackbar */
-
-/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-However, delay the fade out process for 2.5 seconds */
+    visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-/* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
     from {bottom: 0; opacity: 0;}
     to {bottom: 30px; opacity: 1;}

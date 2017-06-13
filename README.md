@@ -32,7 +32,7 @@ The application was built in [AngularJS](https://angularjs.org/) + [Bootstrap](h
 **Game Creation & Updating** <br/>
 ![](http://imagizer.imageshack.us/v2/836x510q90/924/ziu5Md.png?raw=true)
 
-**Game Character Creation** <br/>
+**Game Character Listing** <br/>
 ![](http://imagizer.imageshack.us/v2/1055x410q90/923/hL2eOf.png?raw=true)
 
 **Game Character Creation & Updating** <br/>

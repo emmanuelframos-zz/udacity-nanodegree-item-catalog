@@ -1,4 +1,0 @@
-psycopg2
-pip install SQLAlchemy
-pip install --upgrade google-api-python-client
-pip install Flask-WTF

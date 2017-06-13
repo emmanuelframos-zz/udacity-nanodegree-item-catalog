@@ -19,5 +19,4 @@ angular.module('e-sports').controller('GameController', function (GameService, $
     }
 
     init();
-
 });

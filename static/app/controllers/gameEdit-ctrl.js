@@ -68,5 +68,4 @@ angular.module('e-sports').controller('GameEditController', function (GameServic
     }
 
     init();
-
 });

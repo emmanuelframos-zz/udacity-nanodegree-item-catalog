@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, make_response, request
+from flask import Flask, render_template, jsonify, make_response
 from decorators.authorization_decorator import authorized
 from database.dao import DAO
 from model.game import Game
@@ -57,14 +57,16 @@ def remove_game(game_id):
 @authorized
 def get_characters_by_game(id):
     characters = DAO.session().query(Character).filter(Character.id_game == id)
-    return jsonify(characters=[character.serialize for character in characters])
+    return jsonify(
+        characters=[character.serialize for character in characters])
 
 
 @app.route('/character/all', methods=['GET'])
 @authorized
 def get_characters():
     characters = DAO.find_all(Character)
-    return jsonify(characters=[character.serialize for character in characters])
+    return jsonify(
+        characters=[character.serialize for character in characters])
 
 
 @app.route('/character/<character_id>', methods=['GET'])
@@ -80,6 +82,7 @@ def get_character(character_id):
 def create_character(game_character):
     DAO.create(game_character)
     return "Ok"
+
 
 @app.route('/character/update', methods=['PUT'])
 @authorized
@@ -101,4 +104,4 @@ def remove_character(character_id):
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host = '0.0.0.0', port = 5000)
+    app.run(host='0.0.0.0', port=5000)

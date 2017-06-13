@@ -24,5 +24,4 @@ angular.module('e-sports').service('CharacterService', function($http){
     self.deleteCharacter = function(character_id){
         return $http.delete('http://localhost:5000/character/remove/' + character_id);
     }
-
 });
