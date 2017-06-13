@@ -1,0 +1,31 @@
+ <div ng-include src="'static/app/pages/navbar-on.html'"></div>  
+
+<div ng-controller="GameController as gameCtrl" class="frm-container">
+  <div class="game-filter">
+    <div class="form-group game-filter-name">
+        <label>Game</label>
+        <input type="text" name="gameName" ng-model="filterObj.all" class="form-control">
+    </div>
+    <div class="form-group game-filter-clear">
+          <button class="btn btn-default chrct-filter-btn" ng-click="characterCtrl.clearFilter();filterObj.all=''">Clear</button>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Release Date</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="game in gameCtrl.games | orderBy:'name' | filter:filterObj.all" class="pointer" ng-click="gameCtrl.updateGame(game.id)">
+          <td>{{$index+1}}</td>
+          <td>{{game.name}}</td>
+          <td>{{game.description}}</td>
+          <td>{{game.release_date}}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>

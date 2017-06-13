@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, jsonify, redirect
-from oauth2.authorization_decorator import authorized
+from flask import Flask, render_template, jsonify, make_response, request
+from decorators.authorization_decorator import authorized
 from database.dao import DAO
 from model.game import Game
-from model.game_character import GameCharacter
+from model.character import Character
+from decorators.json_converter_decorator import convert_json_to
+
 
 app = Flask(__name__)
 app.secret_key = "fd7f0e4ec56046e91c32ba18110a0540"
@@ -10,104 +12,91 @@ app.secret_key = "fd7f0e4ec56046e91c32ba18110a0540"
 
 @app.route('/')
 def home():
-    games = DAO.find_all(Game)
-    return render_template('gameList.html', games=[game.serialize for game in games])
-
-
-@app.route('/login', methods=['POST'])
-@authorized
-def login():
-    redirect('/')
-
-
-@app.route('/logout', methods=['POST'])
-def logout():
-    redirect('/')
-
-
-
-
-
-@app.route('/game/<id>', methods=['GET'])
-def get_game(id_game):
-    game = DAO.find(Game, id=id_game)[0]
-    return jsonify(game.serialize)
+    return render_template('base.html')
 
 
 @app.route('/game/all', methods=['GET'])
+@authorized
 def get_games():
     games = DAO.find_all(Game)
-    return jsonify(games=[game.serialize for game in games])
+    return make_response(jsonify(games=[game.serialize for game in games]))
 
 
-@app.route('/game/list', methods=['GET'])
-def list_games():
-    games = DAO.find_all(Game)
-    return render_template('gameList.html', games=[game.serialize for game in games])
-
-
-@app.route('/game/new', methods=['GET'])
-def new_game():
-    return render_template('gameForm.html')
+@app.route('/game/<game_id>', methods=['GET'])
+@authorized
+def get_game(game_id):
+    game = DAO.find(Game, id=game_id)
+    return jsonify(game.serialize)
 
 
 @app.route('/game/create', methods=['POST'])
-#@authorized
-def create_game():
-    content = request.get_json(silent=True)
-    return ""
-
-
-@app.route('/game/remove', methods=['DELETE'])
 @authorized
-def remove_game():
-    return ""
+@convert_json_to(Game)
+def create_game(game):
+    DAO.create(game)
+    return "Ok"
 
 
+@app.route('/game/update', methods=['PUT'])
+@authorized
+@convert_json_to(Game)
+def update_game(game):
+    DAO.update(game)
+    return "Ok"
 
 
+@app.route('/game/remove/<game_id>', methods=['DELETE'])
+@authorized
+def remove_game(game_id):
+    game = DAO.find(Game, id=game_id)
+    DAO.delete(game)
+    return "Ok"
 
 
 @app.route('/game/<id>/character/all', methods=['GET'])
-def get_characters(id):
-    characters = DAO.session().query(GameCharacter).filter(GameCharacter.id_game == id)
+@authorized
+def get_characters_by_game(id):
+    characters = DAO.session().query(Character).filter(Character.id_game == id)
     return jsonify(characters=[character.serialize for character in characters])
 
 
-@app.route('/game/<id>/character/list', methods=['GET'])
-def list_characters(id):
-    games = DAO.find_all(Game)
-    characters = DAO.session().query(GameCharacter).filter(GameCharacter.id_game == id)
-    return render_template('gameCharacterList.html', games=[game.serialize for game in games], characters=[character.serialize for character in characters])
+@app.route('/character/all', methods=['GET'])
+@authorized
+def get_characters():
+    characters = DAO.find_all(Character)
+    return jsonify(characters=[character.serialize for character in characters])
 
 
-
-
-
-
-
-
-@app.route('/character/<id_character>', methods=['GET'])
-def get_character(id_character):
-    game_character = DAO.find(GameCharacter, id=id_character)[0]
+@app.route('/character/<character_id>', methods=['GET'])
+@authorized
+def get_character(character_id):
+    game_character = DAO.find(Character, id=character_id)
     return jsonify(game_character.serialize)
-
-
-@app.route('/character/new', methods=['GET'])
-def new_character():
-    return render_template("gameCharacterForm.html")
 
 
 @app.route('/character/create', methods=['POST'])
 @authorized
-def create_character():
-    return ""
+@convert_json_to(Character)
+def create_character(game_character):
+    DAO.create(game_character)
+    return "Ok"
 
-
-@app.route('/character/remove', methods=['DELETE'])
+@app.route('/character/update', methods=['PUT'])
 @authorized
-def remove_character():
-    return ""
+@convert_json_to(Character)
+def update_character(character):
+    game = DAO.find(Game, id=character.game)
+    character.game = game
+    DAO.update(character)
+    return "Ok"
+
+
+@app.route('/character/remove/<character_id>', methods=['DELETE'])
+@authorized
+def remove_character(character_id):
+    character = DAO.find(Character, id=character_id)
+    DAO.delete(character)
+    return "Ok"
 
 
 if __name__ == '__main__':

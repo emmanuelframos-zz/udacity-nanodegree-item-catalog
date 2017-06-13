@@ -1,5 +1,5 @@
 from httplib2 import Http
-from flask import request, redirect
+from flask import request, abort
 from functools import wraps
 
 
@@ -28,8 +28,8 @@ def authorized(func):
                 is_token_valid = is_facebook_token_valid(auth_token)
 
             if is_token_valid:
-                func(*args, **kwargs)
+                return func(*args, **kwargs)
 
-        redirect("/", code=302)
+        return abort(401)
 
     return validate_token
