@@ -23,7 +23,7 @@ The application was built in [AngularJS](https://angularjs.org/) + [Bootstrap](h
 - Access the application in [http://localhost:5000](http://localhost:5000)
 
 ## e-Sports Game Catalog Funcionalities
-- Login
+Login
 ![](http://imagizer.imageshack.us/v2/689x433q90/924/ZlAlqS.png?raw=true)
 
 - Game Listing
