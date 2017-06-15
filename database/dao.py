@@ -20,8 +20,9 @@ class DAO:
         :return: Object
         """
         session = PostgreConnection.get_session()
-        one_result = session.query(cls).filter_by(**args).one()
-        session.expunge(one_result)
+        one_result = session.query(cls).filter_by(**args).first()
+        if one_result is not None:
+            session.expunge(one_result)
         return one_result
 
     @staticmethod

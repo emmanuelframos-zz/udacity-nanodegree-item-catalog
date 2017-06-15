@@ -1,4 +1,4 @@
-angular.module('e-sports').controller('GameController', function (GameService, $location) {
+angular.module('e-sports').controller('GameController', function (GameService, UtilService, $location) {
     var vm = this;
     vm.games;
 
@@ -11,6 +11,7 @@ angular.module('e-sports').controller('GameController', function (GameService, $
             vm.games = success.data.games;
         }, function (error) {
             console.error("Error on get games. " + error.statusText);
+            UtilService.showSnackbar(document, error.statusText);
         });
     }
 

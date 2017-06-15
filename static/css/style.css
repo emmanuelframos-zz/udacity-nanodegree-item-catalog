@@ -27,6 +27,10 @@ body {
     width: 13em;
 }
 
+.chrct-filter{
+    display: flex;
+}
+
 .chrct-filter-clear{
     margin: 1.7em 0
 }

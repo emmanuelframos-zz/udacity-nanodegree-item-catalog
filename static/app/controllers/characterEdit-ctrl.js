@@ -30,12 +30,14 @@ angular.module('e-sports').controller('CharacterEditController', function (Chara
                     vm.sendToCharacterList();
                }, function(error) {
                     console.error("Error on update character. " + error.statusText);
+                    UtilService.showSnackbar(document, error.statusText);
                });
             }else{
                CharacterService.saveCharacter(vm.character).then(function (success) {
                     vm.sendToCharacterList();
                }, function(error) {
                     console.error("Error on save character. " + error.statusText);
+                    UtilService.showSnackbar(document, error.statusText);
                });
             }
         }
@@ -50,6 +52,7 @@ angular.module('e-sports').controller('CharacterEditController', function (Chara
             vm.sendToCharacterList();
         }, function (error) {
             console.error("Error on remove character. " + error.statusText);
+            UtilService.showSnackbar(document, error.statusText);
         });
     }
 
@@ -59,6 +62,7 @@ angular.module('e-sports').controller('CharacterEditController', function (Chara
             vm.character.release_date = UtilService.MMDDYYYYtoDate(vm.character.release_date);
         }, function (error) {
             console.error("Error on get character. " + error.statusText);
+            UtilService.showSnackbar(document, error.statusText);
         });
     }
 
@@ -68,11 +72,7 @@ angular.module('e-sports').controller('CharacterEditController', function (Chara
 
     vm.fieldsAreValid = function(){
         if (!vm.character || !vm.character.name || !vm.character.release_date || !vm.character.description || !vm.character.id_game){
-            var snackbar = document.getElementById("snackbar")
-            snackbar.className = "show";
-            setTimeout(function(){
-                snackbar.className = snackbar.className.replace("show", "");
-            }, 3000);
+            UtilService.showSnackbar(document);
             return false;
         }
         return true;

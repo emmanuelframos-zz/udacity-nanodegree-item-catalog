@@ -19,12 +19,14 @@ angular.module('e-sports').controller('GameEditController', function (GameServic
                     vm.sendToGameList();
                 }, function (error) {
                     console.error("Error on update game. " + error.statusText);
+                    UtilService.showSnackbar(document, error.statusText);
                 });
             }else{
                 GameService.saveGame(vm.game).then(function (success) {
                     vm.sendToGameList();
                 }, function (error) {
                     console.error("Error on save game. " + error.statusText);
+                    UtilService.showSnackbar(document, error.statusText);
                 });
             }
         }
@@ -36,6 +38,7 @@ angular.module('e-sports').controller('GameEditController', function (GameServic
             vm.game.release_date = UtilService.MMDDYYYYtoDate(vm.game.release_date);
         }, function (error) {
             console.error("Error on get game. " + error.statusText);
+            UtilService.showSnackbar(document, error.statusText);
         });
     }
 
@@ -44,6 +47,7 @@ angular.module('e-sports').controller('GameEditController', function (GameServic
             vm.sendToGameList();
         }, function (error) {
             console.error("Error on remove game. " + error.statusText);
+            UtilService.showSnackbar(document, error.statusText);
         });
     }
 
@@ -57,11 +61,7 @@ angular.module('e-sports').controller('GameEditController', function (GameServic
 
     vm.fieldsAreValid = function(){
         if (!vm.game || !vm.game.name || !vm.game.release_date || !vm.game.description){
-            var snackbar = document.getElementById("snackbar")
-            snackbar.className = "show";
-            setTimeout(function(){
-                snackbar.className = snackbar.className.replace("show", "");
-            }, 3000);
+            UtilService.showSnackbar(document);
             return false;
         }
         return true;

@@ -1,4 +1,4 @@
-angular.module('e-sports').controller('CharacterController', function (CharacterService, GameService, $location) {
+angular.module('e-sports').controller('CharacterController', function (CharacterService, UtilService, GameService, $location) {
     var vm = this;
     vm.games;
     vm.characters;
@@ -14,6 +14,7 @@ angular.module('e-sports').controller('CharacterController', function (Character
             vm.games = success.data.games;
          },function(error){
             console.error("Error on get games. " + error.statusText);
+            UtilService.showSnackbar(document, error.statusText);
          });
     }
 
@@ -22,6 +23,7 @@ angular.module('e-sports').controller('CharacterController', function (Character
             vm.characters = success.data.characters;
         }, function(error) {
             console.error("Error on get characters. " + error.statusText);
+            UtilService.showSnackbar(document, error.statusText);
         });
     }
 
@@ -30,6 +32,7 @@ angular.module('e-sports').controller('CharacterController', function (Character
             vm.characters = success.data.characters;
         }, function (error) {
             console.error("Error on filter characters. " + error.statusText);
+            UtilService.showSnackbar(document, error.statusText);
         });
     }
 

@@ -17,14 +17,8 @@ app.controller('AppController', function ($location) {
         }
     }    
 
-    vm.logout = function () {      
-        if (window.localStorage.auth_provider == 'facebook'){
-            facebookSignOut();
-        }
-        
-        if (window.localStorage.auth_provider == 'google'){
-            googleSignOut();          
-        }
+    vm.logout = function () {
+        googleSignOut();
     }
 
     init();
@@ -62,7 +56,7 @@ app.factory('Interceptor', function Interceptor($q) {
   return {
     request: function(config) {
       config.headers["auth_token"] = window.localStorage.auth_token;
-      config.headers["auth_provider"] = window.localStorage.auth_provider;
+      config.headers["auth_user"] = window.localStorage.auth_user;
       return config;
     },
 
@@ -75,9 +69,17 @@ app.factory('Interceptor', function Interceptor($q) {
     },
 
     responseError: function(res) {
+      if (res.status == 401){
+          res.statusText = "User unauthorized to perform this action."
+          return $q.reject(res);
+      }else if (res.status == 500){
+          res.statusText = "An error ocurred."
+          return $q.reject(res);
+      }
+
       window.localStorage.clear();
-      window.location.href = "/#/signIn";        
-      return $q.reject(res);      
+      window.location.href = "/#/signIn";
+      return $q.reject(res);
     }
   }
 });

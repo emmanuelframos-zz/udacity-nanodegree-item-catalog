@@ -1,8 +1,8 @@
 from database.database_setup import Base
-from sqlalchemy import Column, Integer, String, DateTime, Date
+from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey
 from sqlalchemy.orm import relationship
+from model.user import User
 import datetime
-
 
 
 class Game(Base):
@@ -12,6 +12,8 @@ class Game(Base):
     __tablename__ = "game"
 
     id = Column(Integer, primary_key=True)
+
+    id_user = Column(ForeignKey("users.id"))
 
     name = Column(String(100), nullable=False)
 
@@ -24,7 +26,13 @@ class Game(Base):
 
     updated_at = Column(DateTime, nullable=True)
 
-    characters = relationship('Character', cascade="save-update, merge, delete")
+    characters = relationship('Character',
+                              cascade="save-update, merge, delete")
+
+    user = relationship(User, lazy='subquery')
+
+    def is_same_user(self, auth_user):
+        self.user.email == auth_user
 
     @property
     def serialize(self):

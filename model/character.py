@@ -26,7 +26,7 @@ class Character(Base):
 
     updated_at = Column(DateTime, nullable=True)
 
-    game = relationship(Game)
+    game = relationship(Game, lazy='subquery')
 
     @property
     def serialize(self):
