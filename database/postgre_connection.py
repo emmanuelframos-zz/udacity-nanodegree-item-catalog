@@ -30,11 +30,11 @@ class PostgreConnection:
                 connection = sqlalchemy.create_engine(url, client_encoding=PostgreConnection.database_dict.get("encoding"))
 
                 Base.metadata.bind = connection
+
+            return connection
         except:
             print "Cannot to connect to the database: " + \
                   PostgreConnection.database_dict.get("database")
-
-        return connection
 
     @staticmethod
     def get_session():

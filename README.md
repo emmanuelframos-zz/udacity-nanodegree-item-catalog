@@ -13,7 +13,12 @@ The application was built in [AngularJS](https://angularjs.org/) + [Bootstrap](h
 - [Install](https://www.jetbrains.com/pycharm) PyCharm Community IDE for Python
 - [Install](https://www.postgresql.org/download) PostgreSQL Database Server with pgAdmin Client
 
-## Running e-Sports Game Catalog
+## Running e-Sports Game Catalog on Command Line
+- Access application root directory
+- Run the following command: **python project.py**
+- Access the application in [http://localhost:5000](http://localhost:5000)
+
+## Running e-Sports Game Catalog on PyCharm IDE
 - Certify that PostgreSQL service is running
 - In pgAdmin, create the database and tables (scripts are found in **sql/e_sport_games.sql** file)
 - Certify to configure database properties in **database.properties** file
