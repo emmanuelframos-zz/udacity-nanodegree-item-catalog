@@ -2,7 +2,7 @@
 
 ## Description
 An application to register games and its characters, considering release dates.
-The application was built in [AngularJS](https://angularjs.org/) + [Bootstrap](http://getbootstrap.com/) and supports Google Plus + Facebook authentication.
+The application was built in [AngularJS](https://angularjs.org/) + [Bootstrap](http://getbootstrap.com/) and supports Google Plus authentication.
 
 ## Installing dependencies
 - [Install](https://www.python.org/downloads/) Python 2.7
@@ -24,7 +24,7 @@ The application was built in [AngularJS](https://angularjs.org/) + [Bootstrap](h
 
 ## e-Sports Game Catalog Funcionalities
 **Login** <br/>
-![](http://imagizer.imageshack.us/v2/689x433q90/924/ZlAlqS.png?raw=true)
+![](https://imagizer.imageshack.us/v2/579x362q90/923/5h5ZQV.png?raw=true)
 
 **Game Listing** <br/>
 ![](http://imagizer.imageshack.us/v2/1055x327q90/923/Pq88uT.png?raw=true)
