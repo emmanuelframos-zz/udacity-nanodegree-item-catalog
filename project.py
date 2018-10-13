@@ -141,4 +141,4 @@ def remove_character(character_id):
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='18.216.2.201', port=5000)
+    app.run(host='127.0.0.1', port=5000)
