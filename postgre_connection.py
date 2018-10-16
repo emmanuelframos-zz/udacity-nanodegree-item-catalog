@@ -7,8 +7,6 @@ class PostgreConnection:
     """
     Class used to connect on database and return the connection object
     """
-    database_dict = dict(line.strip().split('=') for line in open('database.properties'))
-
     connection = None
 
     @staticmethod
@@ -21,13 +19,13 @@ class PostgreConnection:
             if not PostgreConnection.connection:
                 url = "postgresql://{}:{}@{}:{}/{}"
 
-                url = url.format(PostgreConnection.database_dict.get("username"),
-                                 PostgreConnection.database_dict.get("password"),
-                                 PostgreConnection.database_dict.get("hostname"),
-                                 PostgreConnection.database_dict.get("port"),
-                                 PostgreConnection.database_dict.get("database"))
+                url = url.format("grader",
+                                 "l1nux;",
+                                 "ec2-18-216-2-201.us-east-2.compute.amazonaws.com",
+                                 "5432",
+                                 "item-catalog")
 
-                connection = sqlalchemy.create_engine(url, client_encoding=PostgreConnection.database_dict.get("encoding"))
+                connection = sqlalchemy.create_engine(url, client_encoding=PostgreConnection.database_dict.get("UTF8"))
 
                 Base.metadata.bind = connection
 
