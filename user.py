@@ -1,5 +1,5 @@
-from database.database_setup import Base
-from sqlalchemy import Column, Integer, String, DateTime, Date
+from database_setup import Base
+from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 import datetime
 

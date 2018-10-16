@@ -1,7 +1,7 @@
-from database.database_setup import Base
+from database_setup import Base
 from sqlalchemy import Column, Integer, ForeignKey, String, DateTime, Date
 from sqlalchemy.orm import relationship
-from model.game import Game
+from game import Game
 import datetime
 
 

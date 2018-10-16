@@ -1,11 +1,11 @@
 from flask import Flask, render_template, jsonify, make_response, \
     request, abort
-from decorators.authentication_decorator import authenticated
-from database.dao import DAO
-from model.game import Game
-from model.user import User
-from model.character import Character
-from decorators.json_converter_decorator import convert_json_to
+from authentication_decorator import authenticated
+from dao import DAO
+from game import Game
+from user import User
+from character import Character
+from json_converter_decorator import convert_json_to
 
 
 app = Flask(__name__)

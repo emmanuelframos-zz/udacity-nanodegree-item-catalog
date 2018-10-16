@@ -1,7 +1,7 @@
-from database.database_setup import Base
+from database_setup import Base
 from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey
 from sqlalchemy.orm import relationship
-from model.user import User
+from user import User
 import datetime
 
 

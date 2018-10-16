@@ -1,4 +1,4 @@
-from database.postgre_connection import PostgreConnection
+from postgre_connection import PostgreConnection
 
 
 class DAO:
