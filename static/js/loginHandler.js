@@ -11,7 +11,7 @@ googleSignIn = function(){
        window.localStorage.auth_user = response.w3.U3;
 
        $.ajax({
-          url: 'http://ec2-18-216-2-201.us-east-2.compute.amazonaws.com:5000/user/create',
+          url: 'http://ec2-18-216-2-201.us-east-2.compute.amazonaws.com:80/user/create',
           type: 'post',
           headers: {
             "auth_token": response.getAuthResponse().access_token,
